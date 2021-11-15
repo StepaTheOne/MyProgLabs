@@ -1,4 +1,11 @@
-﻿#include<iostream>
+﻿/*****************************
+* Новиков Степан, ПИ-211     *
+* Задача 1                   *
+* Количество повторений букв *
+* И двухбуквенных сочетаний  *
+******************************/
+
+#include<iostream>
 #include<fstream>
 #include<string>
 #define LOL 77
@@ -67,35 +74,6 @@ int Find2Letter(string slovo, int SIZE) {
 }
 
 int main() {
-    /*#include <iostream>
-//----------------------------------------------------------------------------
-int main()
-{   
-    int i, j;
-    char *str = "abcdefcaabk";
-    int N = strlen(str);
- 
-    char *res = new char [N+1];
-    for (i = 0; i<N; i++)
-        res[i] = '1';
-    res[i] = '\0';
- 
-    for (i = 0; i<N-1; i++)
-    {
-        if (res[i] == '0')
-            continue;
-    
-        for (j = i+1; j<N; j++)
-            if (str[i] == str[j])
-                res[i] = res[j] = '0';
-    }
- 
-    std::cout << res;
- 
-    delete [] res;
-    std::cin.get();
-    return 0;
-}*/
     fstream file;
     file.open("text.txt");
 
