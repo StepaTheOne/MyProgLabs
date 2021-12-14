@@ -8,21 +8,39 @@ using namespace std;
 
 #define    NUMS    13
 
-char* to_roman(unsigned int num, char* buff)
+/*char* toRoman1(unsigned int num, char* buff)
 {
     int p = NUMS;
     unsigned int a_num[NUMS] = { 1,4,5,9,10,40,50,90,100,400,500,900,1000 };
-    char* r_str[NUMS] = { "I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M" };
+    const char* r_num[NUMS] = { "I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M" };
 
     *buff = '\0';
     while (p--)
         while (num >= a_num[p])
         {
             num -= a_num[p];
-            strcat(buff, r_str[p]);
+            strcat_s(buff, 12 ,r_num[p]);
         }
 
     return buff;
+}*/
+
+string toRoman(unsigned int num)
+{
+    int p = NUMS;
+    unsigned int a_num[NUMS] = { 1,4,5,9,10,40,50,90,100,400,500,900,1000 };
+    const char* r_num[NUMS] = { "I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M" };
+
+    
+    string str = "";
+    while (p--)
+        while (num >= a_num[p])
+        {
+            num -= a_num[p];
+            str += r_num[p];
+        }
+
+    return str;
 }
 
 int toArabic(string str) {
@@ -57,12 +75,13 @@ int toArabic(string str) {
 
 int main(void)
 {
-    char* roman;
-    unsigned int arabian = 123;       // .тут вводим число
+    //char* roman;
+    unsigned int arabian = 3998;       // .тут вводим число
     string romanNum = "CI";
-    roman = (char*)malloc(256);
-    cout << arabian << " : " << to_roman(arabian, roman) << endl;
-    free(roman);
+    //roman = (char*)malloc(256);
+    //cout << arabian << " : " << toRoman(arabian, roman) << endl;
+    cout << arabian << " : " << toRoman(arabian) << endl;
+    //free(roman);
     cout << toArabic(romanNum);
     return 0;
 }
