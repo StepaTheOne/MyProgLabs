@@ -28,37 +28,30 @@ int toArabic(string str) {
     for (int index = 0; index <= str.length(); ++index) {
         if (str[index] == 'I' && str[index + 1] == 'V') {
             ArNum += 4;
-        }
-        else if (str[index] == 'I' && str[index + 1] != 'X') { //del str[index + 1] != 'V'
+        } else if (str[index] == 'I' && str[index + 1] != 'X') { 
             ++ArNum;
-        }else
-        if (str[index] == 'I' && str[index + 1] == 'X') {
+        } else if (str[index] == 'I' && str[index + 1] == 'X') {
             ArNum += 9;
-        }else
-        if (str[index] == 'X' && str[index + 1] == 'L') {
+        } else if (str[index] == 'X' && str[index + 1] == 'L') {
             ArNum += 40;
-        }else
-        if (str[index] == 'X' && str[index + 1] == 'C') {
+        } else if (str[index] == 'X' && str[index + 1] == 'C') {
             ArNum += 90;
-        }else
-        if (str[index] == 'C' && str[index + 1] == 'D') {
+        } else if (str[index] == 'C' && str[index + 1] == 'D') {
             ArNum += 400;
-        }else
-        if (str[index] == 'C' && str[index + 1] == 'M') {
+        } else if (str[index] == 'C' && str[index + 1] == 'M') {
             ArNum += 900;
-        }
-        else {
-            int pos = -1; // символ не найден
-            unsigned int a_num[NUMS] = { 1,4,5,9,10,40,50,90,100,400,500,900,1000 };
-            const char* r_num[NUMS] = { "I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M" };
-            for (int i = 0; i < NUMS; i++){
-                if (r_num[i] == str[index])
-                {
-                    pos = i;
-                    break;
-                }
-            }
-            ArNum += a_num[pos];
+        } else if(str[index] == 'M'){
+            ArNum += 1000;
+        } else if (str[index] == 'D') {
+            ArNum += 500;
+        } else if (str[index] == 'C') {
+            ArNum += 100;
+        } else if (str[index] == 'L') {
+            ArNum += 50;
+        } else if (str[index] == 'X') {
+            ArNum += 10;
+        } else if (str[index] == 'V') {
+            ArNum += 5;
         }
     }
     return ArNum;
