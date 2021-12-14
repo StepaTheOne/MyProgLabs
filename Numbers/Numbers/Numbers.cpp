@@ -1,29 +1,9 @@
-﻿#include <stdio.h>
-#include <stdlib.h>
-#include <cstring>
-#include <string>
+﻿#include <string>
 #include <iostream>
 
 using namespace std;
 
 #define    NUMS    13
-
-/*char* toRoman1(unsigned int num, char* buff)
-{
-    int p = NUMS;
-    unsigned int a_num[NUMS] = { 1,4,5,9,10,40,50,90,100,400,500,900,1000 };
-    const char* r_num[NUMS] = { "I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M" };
-
-    *buff = '\0';
-    while (p--)
-        while (num >= a_num[p])
-        {
-            num -= a_num[p];
-            strcat_s(buff, 12 ,r_num[p]);
-        }
-
-    return buff;
-}*/
 
 string toRoman(unsigned int num)
 {
@@ -44,44 +24,58 @@ string toRoman(unsigned int num)
 }
 
 int toArabic(string str) {
-    int arabNum = 0;
+    int ArNum = 0;
     for (int index = 0; index <= str.length(); ++index) {
         if (str[index] == 'I' && str[index + 1] == 'V') {
-            arabNum += 4;
+            ArNum += 4;
         }
-        else if (str[index] == 'I' && str[index + 1] != 'V' && str[index + 1] != 'X') {
-            ++arabNum;
-        }
+        else if (str[index] == 'I' && str[index + 1] != 'X') { //del str[index + 1] != 'V'
+            ++ArNum;
+        }else
         if (str[index] == 'I' && str[index + 1] == 'X') {
-            arabNum += 9;
-        }
+            ArNum += 9;
+        }else
         if (str[index] == 'X' && str[index + 1] == 'L') {
-            arabNum += 40;
-        }
+            ArNum += 40;
+        }else
         if (str[index] == 'X' && str[index + 1] == 'C') {
-            arabNum += 90;
-        }
+            ArNum += 90;
+        }else
         if (str[index] == 'C' && str[index + 1] == 'D') {
-            arabNum += 400;
-        }
+            ArNum += 400;
+        }else
         if (str[index] == 'C' && str[index + 1] == 'M') {
-            arabNum += 900;
+            ArNum += 900;
         }
-
+        else {
+            int pos = -1; // символ не найден
+            unsigned int a_num[NUMS] = { 1,4,5,9,10,40,50,90,100,400,500,900,1000 };
+            const char* r_num[NUMS] = { "I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M" };
+            for (int i = 0; i < NUMS; i++){
+                if (r_num[i] == str[index])
+                {
+                    pos = i;
+                    break;
+                }
+            }
+            ArNum += a_num[pos];
+        }
     }
-    return arabNum;
+    return ArNum;
 }
 
 
 int main(void)
 {
-    //char* roman;
-    unsigned int arabian = 3998;       // .тут вводим число
-    string romanNum = "CI";
-    //roman = (char*)malloc(256);
-    //cout << arabian << " : " << toRoman(arabian, roman) << endl;
-    cout << arabian << " : " << toRoman(arabian) << endl;
-    //free(roman);
-    cout << toArabic(romanNum);
+    setlocale(LC_ALL, "ru");
+    unsigned int ArNum;    //объявляем переменные
+    string RoNum;
+    cout << "Введите арабское число: ";
+    cin >> ArNum;
+    cout << "\nВведите Римское число: ";
+    cin >> RoNum;
+    cout << endl;
+    cout << ArNum << " : " << toRoman(ArNum) << endl;
+    cout << RoNum << " : " << toArabic(RoNum) << endl;
     return 0;
 }
